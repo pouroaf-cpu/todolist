@@ -7,10 +7,11 @@
 - Desktop app task loading now calls the Apps Script endpoint with `action=today`.
 - Web UI task data now loads from the Apps Script `action=today` endpoint via `web/data.js`.
 - Root `vercel.json` rewrites serve the static web app from `web/` on Vercel.
+- Latest production deploy was run from `web/` and aliased to `https://web-pouroas-projects.vercel.app`.
 
 ## What Changed This Session
-- Added root `vercel.json` to fix Vercel `404: NOT_FOUND` by routing `/` to `/web/index.html`.
+- Deployed the linked Vercel `web` project from the `web/` folder to production.
 - Updated `HANDOFF.md` for Codex session tracking.
 
 ## Next Steps
-- Confirm the Vercel deployment URL loads the web UI instead of `404: NOT_FOUND`.
+- Open `https://web-pouroas-projects.vercel.app` and confirm the UI loads.

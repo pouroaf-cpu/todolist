@@ -6,19 +6,23 @@
 - Status: Complete
 
 ## What Was Built/Changed
-- Added root `vercel.json` rewrites so Vercel serves the static app from `web/`.
-- Mapped `/` to `/web/index.html` and all asset paths to `/web/:path*`.
+- Deployed the linked Vercel `web` project from the `web/` folder to production.
+- Production deployment URL: `https://web-l4a53x0uk-pouroas-projects.vercel.app`.
+- Production alias: `https://web-pouroas-projects.vercel.app`.
 
 ## Decisions Made (and why)
-- Kept the existing `web/` folder structure and fixed routing at the deployment layer instead of moving app files.
+- Deployed from `web/` because that folder contains `index.html`; deploying from the repo root can produce the `404: NOT_FOUND` page.
 
 ## Issues Found By Other Agents
 - None recorded.
 
 ## Code Review Status
 - Reviewed by Codex: [x] Yes [ ] No
-- Issues found: Vercel can return `404: NOT_FOUND` when the deployment root has no `index.html`.
-- Issues fixed: Added root rewrites to serve the static web app from `web/`.
+- Issues found: Vercel production needed to be deployed from the static app folder.
+- Issues fixed: Ran production deployment from `web/`.
+
+## Deployments
+- 2026-05-18: Production deployed from `web/` to `https://web-l4a53x0uk-pouroas-projects.vercel.app`; aliased to `https://web-pouroas-projects.vercel.app`.
 
 ## Next Actions
-- [ ] Confirm the Vercel deployment URL loads the web UI instead of `404: NOT_FOUND`.
+- [ ] Open `https://web-pouroas-projects.vercel.app` and confirm the UI loads.
