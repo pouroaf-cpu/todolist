@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_URL = "https://script.google.com/macros/s/AKfycbzAkoPEaYa5Ys7GTZK8v-60i1x5jgsFLnkkVqfhdl1zGYjIq4SUGTxBUuv7d0LOpb-4pg/exec"
@@ -12,6 +13,6 @@ DEFAULT_SETTINGS = {
 }
 
 ICLOUD_USERNAME = "pouroaf@gmail.com"
-ICLOUD_PASSWORD = "jltc-weya-otqi-vfuk"
+ICLOUD_PASSWORD = os.environ.get("TODO_WIDGET_ICLOUD_PASSWORD", "")
 ICLOUD_CALDAV_URL = "https://caldav.icloud.com"
 SCHEDULE_TZ = "Pacific/Auckland"
