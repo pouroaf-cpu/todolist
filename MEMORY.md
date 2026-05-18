@@ -8,10 +8,14 @@
 - Web UI task data now loads from the Apps Script `action=today` endpoint via `web/data.js`.
 - Root `vercel.json` rewrites serve the static web app from `web/` on Vercel.
 - Latest production deploy was run from `web/` and aliased to `https://web-pouroas-projects.vercel.app`.
+- `web/app.jsx` now accepts both API `DD/MM/YYYY` dates and existing `YYYY-MM-DD` dates when parsing and filtering Today tasks.
+- The web status bar now renders outside `.task-scroll` and stays pinned beneath the scrollable task list.
 
 ## What Changed This Session
-- Deployed the linked Vercel `web` project from the `web/` folder to production.
+- Fixed `parseDate` in `web/app.jsx` to support `DD/MM/YYYY` and empty values safely.
+- Updated Today filtering to use parsed date comparison rather than raw `YYYY-MM-DD` string comparison.
+- Moved the status bar JSX outside `.task-scroll` and adjusted `.win`/`.statusbar` CSS to prevent footer overlap.
 - Updated `HANDOFF.md` for Codex session tracking.
 
 ## Next Steps
-- Open `https://web-pouroas-projects.vercel.app` and confirm the UI loads.
+- Open the local or deployed web UI and confirm API dates display in the Today list without footer overlap.

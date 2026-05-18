@@ -92,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* Scrollable task area — header/toolbar stay pinned */
@@ -910,6 +911,7 @@ select.picker:hover { background-color: var(--surface-hi); }
 /* status bar */
 .statusbar {
   display: flex;
+  flex: 0 0 auto;
   justify-content: space-between;
   align-items: center;
   padding: 6px 14px;

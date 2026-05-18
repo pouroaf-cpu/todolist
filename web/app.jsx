@@ -55,7 +55,14 @@ const taskIsAutoSlotted = (task) =>
 // ── helpers ────────────────────────────────────────────────────────────────
 const startOfDay = (d) => { const x = new Date(d); x.setHours(0,0,0,0); return x; };
 const diffDays = (a, b) => Math.round((startOfDay(a) - startOfDay(b)) / 86400000);
-const parseDate = (iso) => new Date(iso + "T00:00:00");
+const parseDate = (iso) => {
+  if (!iso) return new Date(NaN);
+  if (/^\d{2}\/\d{2}\/\d{4}$/.test(iso)) {
+    const [d, m, y] = iso.split("/");
+    return new Date(`${y}-${m}-${d}T00:00:00`);
+  }
+  return new Date(iso + "T00:00:00");
+};
 
 function formatDue(iso, today) {
   if (!iso) return "—";
@@ -350,9 +357,8 @@ function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [addOpen]);
 
-  const todayISO = today.toISOString().slice(0, 10);
   const isOverdue = (task) => task.nextDue && diffDays(parseDate(task.nextDue), today) < 0;
-  const isToday   = (task) => task.nextDue === todayISO;
+  const isToday   = (task) => task.nextDue && diffDays(parseDate(task.nextDue), today) === 0;
 
   const allProjects = useMemo(() => {
     const counts = {};
@@ -654,14 +660,15 @@ function App() {
             </div>
           )}
 
-          {/* Status bar */}
-          <div className="statusbar">
-            <span>{visible.length} of {counts.all} tasks · {counts.done} completed today</span>
-            <span className="right">
-              <span>⌘K search · ⌘N new · drag to reorder</span>
-              <span className="sync"><span className="pulse" /> Synced with Google Sheets</span>
-            </span>
-          </div>
+        </div>
+
+        {/* Status bar */}
+        <div className="statusbar">
+          <span>{visible.length} of {counts.all} tasks · {counts.done} completed today</span>
+          <span className="right">
+            <span>⌘K search · ⌘N new · drag to reorder</span>
+            <span className="sync"><span className="pulse" /> Synced with Google Sheets</span>
+          </span>
         </div>
       </div>
 
