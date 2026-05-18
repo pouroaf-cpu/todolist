@@ -6,20 +6,19 @@
 - Status: Complete
 
 ## What Was Built/Changed
-- Prepared untracked web todo app files for Git push.
-- Created MEMORY.md for project continuity.
-- Pushed commit `2541652` to `origin/master`.
+- Fixed task loading API parameter in `logic/api.py`.
+- Changed the Google Apps Script load request from `view=today` to `action=today`.
 
 ## Decisions Made (and why)
-- Committed web/ app files while leaving ignored build/cache/deployment artifacts out of Git.
+- Used the Apps Script API's expected `action` parameter so today's tasks can load correctly.
 
 ## Issues Found By Other Agents
 - None recorded.
 
 ## Code Review Status
 - Reviewed by Codex: [x] Yes [ ] No
-- Issues found: None in the staged Git scope.
-- Issues fixed: None.
+- Issues found: `load_tasks_async` used `params={"view": "today"}` while the API expects `params={"action": "today"}`.
+- Issues fixed: Updated the GET request parameter.
 
 ## Next Actions
-- [ ] Decide whether the web todo app should be deployed to Vercel.
+- [ ] Run the app and confirm today's tasks load from Google Apps Script.

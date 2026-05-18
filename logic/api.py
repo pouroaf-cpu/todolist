@@ -19,7 +19,7 @@ def load_tasks_async(app, silent=False):
 
     def worker():
         try:
-            response = requests.get(BASE_URL, params={"view": "today"}, timeout=20)
+            response = requests.get(BASE_URL, params={"action": "today"}, timeout=20)
             raw = response.text.strip()
 
             try:

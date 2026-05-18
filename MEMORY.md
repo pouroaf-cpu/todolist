@@ -4,11 +4,11 @@
 - Existing GitHub remote: https://github.com/pouroaf-cpu/todolist.git
 - `web/` todo app files are committed and pushed to `origin/master` in commit `2541652`.
 - `web/.vercel/` remains ignored and should stay out of Git.
+- Desktop app task loading now calls the Apps Script endpoint with `action=today`.
 
 ## What Changed This Session
-- Added this project memory file.
+- Fixed `logic/api.py` so `load_tasks_async` sends `params={"action": "today"}` instead of `params={"view": "today"}`.
 - Updated `HANDOFF.md` for Codex session tracking.
-- Pushed the current todo app web folder to GitHub.
 
 ## Next Steps
-- Decide whether the web todo app should be deployed to Vercel.
+- Run the app and confirm today's tasks load from Google Apps Script.
