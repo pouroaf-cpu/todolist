@@ -6,19 +6,20 @@
 - Status: Complete
 
 ## What Was Built/Changed
-- Fixed task loading API parameter in `logic/api.py`.
-- Changed the Google Apps Script load request from `view=today` to `action=today`.
+- Replaced hardcoded `web/data.js` task samples with live Apps Script loading.
+- Added a loading gate and retryable error state before `app.jsx` renders.
+- Kept `app.jsx` unchanged by continuing to expose tasks through `window.SAMPLE_TASKS`.
 
 ## Decisions Made (and why)
-- Used the Apps Script API's expected `action` parameter so today's tasks can load correctly.
+- `web/data.js` accepts both `data` and `tasks` arrays because the requested contract says `data`, while the live endpoint currently returns `tasks`.
 
 ## Issues Found By Other Agents
 - None recorded.
 
 ## Code Review Status
 - Reviewed by Codex: [x] Yes [ ] No
-- Issues found: `load_tasks_async` used `params={"view": "today"}` while the API expects `params={"action": "today"}`.
-- Issues fixed: Updated the GET request parameter.
+- Issues found: `web/data.js` used static `SAMPLE_TASKS`, so the web UI could not show live Google Apps Script tasks.
+- Issues fixed: Added live fetch, response normalization, loading state, and error state.
 
 ## Next Actions
-- [ ] Run the app and confirm today's tasks load from Google Apps Script.
+- [ ] Open the web UI in a browser and confirm live tasks render correctly.
