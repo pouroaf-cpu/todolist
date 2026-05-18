@@ -6,20 +6,19 @@
 - Status: Complete
 
 ## What Was Built/Changed
-- Replaced hardcoded `web/data.js` task samples with live Apps Script loading.
-- Added a loading gate and retryable error state before `app.jsx` renders.
-- Kept `app.jsx` unchanged by continuing to expose tasks through `window.SAMPLE_TASKS`.
+- Added root `vercel.json` rewrites so Vercel serves the static app from `web/`.
+- Mapped `/` to `/web/index.html` and all asset paths to `/web/:path*`.
 
 ## Decisions Made (and why)
-- `web/data.js` accepts both `data` and `tasks` arrays because the requested contract says `data`, while the live endpoint currently returns `tasks`.
+- Kept the existing `web/` folder structure and fixed routing at the deployment layer instead of moving app files.
 
 ## Issues Found By Other Agents
 - None recorded.
 
 ## Code Review Status
 - Reviewed by Codex: [x] Yes [ ] No
-- Issues found: `web/data.js` used static `SAMPLE_TASKS`, so the web UI could not show live Google Apps Script tasks.
-- Issues fixed: Added live fetch, response normalization, loading state, and error state.
+- Issues found: Vercel can return `404: NOT_FOUND` when the deployment root has no `index.html`.
+- Issues fixed: Added root rewrites to serve the static web app from `web/`.
 
 ## Next Actions
-- [ ] Open the web UI in a browser and confirm live tasks render correctly.
+- [ ] Confirm the Vercel deployment URL loads the web UI instead of `404: NOT_FOUND`.

@@ -6,12 +6,11 @@
 - `web/.vercel/` remains ignored and should stay out of Git.
 - Desktop app task loading now calls the Apps Script endpoint with `action=today`.
 - Web UI task data now loads from the Apps Script `action=today` endpoint via `web/data.js`.
+- Root `vercel.json` rewrites serve the static web app from `web/` on Vercel.
 
 ## What Changed This Session
-- Replaced hardcoded web `SAMPLE_TASKS` with a live Apps Script fetch.
-- Added browser loading and retryable error states before React renders.
-- Kept `app.jsx` unchanged by populating `window.SAMPLE_TASKS` after the fetch succeeds.
+- Added root `vercel.json` to fix Vercel `404: NOT_FOUND` by routing `/` to `/web/index.html`.
 - Updated `HANDOFF.md` for Codex session tracking.
 
 ## Next Steps
-- Open the web UI in a browser and confirm live tasks render correctly.
+- Confirm the Vercel deployment URL loads the web UI instead of `404: NOT_FOUND`.
